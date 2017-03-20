@@ -1,0 +1,36 @@
+<html ng-app="tempConvert">
+    <head>
+        <script src="angular.min.js"></script>
+        
+        <script>
+         var tempApp = angular.module('tempConvert',[]);
+
+            tempApp.controller("FahrenheightConvertController", ['$scope', function($scope) {
+              $scope.convertFtoC = function(value)
+              {
+                  return Math.round((value - 32) / 1.8);
+              }
+             
+            }]);
+            
+            tempApp.controller("CelsiusConvertController", ['$scope', function($scope){
+                $scope.convertCtoF = function(value)
+                {
+                    return (value * 1.8) + 32;
+                }
+            }])
+        </script>
+        
+    </head>
+    
+    <body>
+        <div ng-controller = "FahrenheightConvertController">
+            <input ng-model="num"> degrees Farenheight converted to Celsius equals {{ convertFtoC(num) }}
+        </div>
+        
+        <div ng-controller = "CelsiusConvertController">
+            <input ng-model="num"> degrees Celsius converted to Farenheight equals {{ convertCtoF(num) }}
+        </div>
+        
+    </body>
+</html>

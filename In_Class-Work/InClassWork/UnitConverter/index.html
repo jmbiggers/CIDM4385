@@ -1,0 +1,21 @@
+<html ng-app="UnitConverter">
+	<head>
+		<title>Unit Converter</title>
+	</head>
+	<body>
+		<h1>Converter App</h1>
+		<div ng-controller="UnitConverterController as ucc">
+			<input type="text" ng-model="ucc.lengthValue" id="Length_value" name="VALUE" placeholder="Enter amount">
+            <select ng-model="ucc.selected_metric_volume_unit" 
+                    ng-options="unit.unit_name for unit in ucc.metric_volume_units" 
+                    ng-change="ucc.showSelectedUnit()"></select>
+			
+			<!--<select>-->
+			<div>
+				<p>Selected unit is: <span ng-bind="ucc.selected_metric_volume_unit.unit_name"></span></p>
+			</div>
+		</div>
+        <script src="angular.js"></script>
+        <script src="app.js"></script>	
+	</body>
+</html>

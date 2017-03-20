@@ -1,0 +1,91 @@
+<!-- this is an AngularJS View Template -->
+<!-- it is necessary to create a module into which we place our ng-app -->
+<html ng-app="AngularJSExample2">
+    <head>
+        <!-- from Google Hosted Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular-animate.min.js"></script>
+        <script lang="javascript">
+            var myModule = angular.module('AngularJSExample2', ['ngAnimate']);
+            
+            //first register the controller - https://docs.angularjs.org/guide/migration
+            myModule.controller('ContactsController', 
+                function ($scope) {
+                    var cc = this;
+                    
+                    cc.name = "";
+                    cc.phone = "";
+                    cc.phone2 = "";
+                    cc.people = [
+                        {name:'Jack', phones:['806-555-1212', '806-555-5300']},
+                        {name:'Jane', phones:['806-555-3232', '806-555-7878']},
+                        {name:'Jill', phones:['804-867-5309', '806-555-2112']}
+                    ];
+                    
+                    cc.add = function add(){
+                        cc.people.push(
+                            {name: cc.name, phones: [cc.phone , cc.phone2]}
+                        );
+                    }                    
+                }
+            );
+            
+            myModule.controller('PersonController', 
+                function ($scope) {
+                    var pc = this;
+                    
+                    pc.show_phones = false;
+                    pc.show = function show(){
+                        pc.show_phones=true;
+                    }
+                    
+                    pc.hide = function hide(){
+                        pc.show_phones=false;
+                    }                    
+                    
+                }
+            );            
+            
+        </script>
+        <style>
+            .gray { background: #eee; }
+            
+            .person.ng-enter,
+            .person.ng-leave{
+                -webkit-transition:0.5s linear all;
+                transition:0.5s linear all;
+            }
+            
+            .person.ng-enter,
+            .person.ng-leave.ng-leave-active{
+                opacity:0;
+            }
+            
+            .person.ng-leave,
+            .person.ng-enter.ng-enter-active {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body ng-controller="ContactsController as cc">
+        Name:<input type="text" ng-model="cc.name"/>
+        Home Phone Number:<input type="text" ng-model="cc.phone"/>
+        Cell Phone Number:<input type="text" ng-model="cc.phone2"/>
+        <button ng-click="cc.add()">Add</button>
+        <div ng-repeat="person in cc.people" ng-controller="PersonController as pc"
+             ng-class-odd="'gray'" class="person">
+            {{person.name}}
+            (
+            <a href="#" ng-click="pc.show()" ng-hide="pc.show_phones">Show</a>
+            <a href="#" ng-click="pc.hide()" ng-show="pc.show_phones">Hide</a>
+            )
+            
+            <div style="margin-left:50px;" ng-show="pc.show_phones">
+                <div ng-repeat="phone in person.phones">
+                    {{phone}}
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

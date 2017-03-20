@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="ForecastApp">
+	<head>
+		<script src="currentConditions.html"></script>
+
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<div ng-controller="WeatherServiceController as wsc">
+			<p>Lat: {{wsc.selected_lat}}</p>
+			<p>Lon: {{wsc.selected_lon}}</p>
+			<p><img src="{{wsc.google_static_maps_url}}" /></p>
+			<p>Time: {{wsc.observation_time}}</p>
+			<p>Temperature: {{wsc.dewpoint}}</p>
+			<p>Dewpoint: {{wsc.temperature}}</p>
+			<p>Wind Direction: </p>
+			<p>Wind Speed: </p>
+			<p></p>
+			<p></p>
+		</div>
+	</body>
+	<script src="angular.js"></script>
+		<script src="app.js"></script>	
+</html>

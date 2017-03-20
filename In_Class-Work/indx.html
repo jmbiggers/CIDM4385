@@ -1,0 +1,30 @@
+<html ng-app="ExampleOne">
+    <head>
+        <title>Example 1</title>
+        <script src="angular.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>-->
+        <!-- <script src="https://code.angularjs.org/1.6.1/angular.min.js"></script>-->
+        
+        <script>
+         var myApp = angular.module('ExampleOne',[]);
+
+            myApp.controller('ExampleOneController', ['$scope', function($scope) {
+              $scope.greeting = 'Hola!';
+            }]);
+            
+            myApp.controller('ExampleOneOneController', ['$scope', function($scope){
+                $scope.doubleIt = function(value){
+                    return value * 2;
+                }
+            }])
+        </script>
+    </head>
+    <body>
+        <div ng-controller="ExampleOneController">
+            {{ greeting }}
+        </div>
+        <div ng-controller="ExampleOneOneController">
+            Two Times <input ng-model="num"> equals {{ doubleIt(num) }}
+        </div>
+    </body>
+</html>
